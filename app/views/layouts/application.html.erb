@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskApp2V2</title>
+    <title>Poteshare</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+          <a href="/">
+            <img alt="サイトのロゴ画像" src="/assets/logo.png">
+          </a>
+          <!--検索機能つける-->
+          <%= form_with url: "/" do |f| %>
+            <div class="header-search d-lg-inline-block d-none">
+              <%= f.text_field :area, class: "form-control", placeholder:"エリア" %>
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="header-sherch d-lg-inline-block d-none">
+              <%= f.text_field :keyword, class: "form-control", placeholder:"キーワード" %>
+              <i class="fas fa-search"></i>
+            </div>
+            <%= f.submit :commit, class:"d-none" %>
+          <% end %>
+        </div>
+        <div class="header-right-nav">
+          <div class="nav-item">
+            <%= link_to "ログイン", "/login", class: "btn btn-primary my-2 mx-3" %>
+            <%= link_to "登録する", "/sign_up", class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      <p>© 2020 POTEPAN.INC.</p>
+    </footer>
   </body>
+
 </html>
